@@ -111,7 +111,7 @@ class Subscription implements SubscriptionInterface
 			'period_started_at' => date('Y-m-d H:i:s', $this->stripe_subscription->current_period_start),
 			'period_ends_at'    => date('Y-m-d H:i:s', $this->stripe_subscription->current_period_end),
 			'trial_ends_at'     => $trial_end ? date('Y-m-d H:i:s', $trial_end) : null,
-			'card'              => $this->stripe_customer->default_card,
+			'card'              => $this->stripe_customer->default_source,
 			'discounts'         => $discounts,
 		);
 	}
@@ -185,10 +185,10 @@ class Subscription implements SubscriptionInterface
 		}
 		
 		if (!empty($properties['card_token'])) {
-			$this->stripe_subscription->card = $properties['card_token'];
+			$this->stripe_subscription->source = $properties['card_token'];
 		}
 		else if (!empty($properties['card'])) {
-			$this->stripe_subscription->card = $properties['card'];
+			$this->stripe_subscription->source = $properties['card'];
 		}
 		
 		$this->stripe_subscription->save();

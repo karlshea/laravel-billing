@@ -98,7 +98,7 @@ class Charge implements ChargeInterface
 			'paid'        => $this->stripe_charge->paid,
 			'refunded'    => $this->stripe_charge->refunded,
 			'captured'    => $this->stripe_charge->captured,
-			'card'        => $this->stripe_charge->card ? $this->stripe_charge->card->id : null,
+			'card'        => $this->stripe_charge->source ? $this->stripe_charge->source->id : null,
 			'invoice_id'  => $this->stripe_charge->invoice,
 			'description' => $this->stripe_charge->description,
 		);

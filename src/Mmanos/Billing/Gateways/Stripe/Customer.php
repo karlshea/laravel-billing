@@ -141,7 +141,7 @@ class Customer implements CustomerInterface
 			$this->stripe_customer->coupon = $properties['coupon'];
 		}
 		if (!empty($properties['card_token'])) {
-			$this->stripe_customer->card = $properties['card_token'];
+			$this->stripe_customer->source = $properties['card_token'];
 		}
 		
 		$this->stripe_customer->save();
@@ -199,7 +199,7 @@ class Customer implements CustomerInterface
 			return array();
 		}
 		
-		$cards = $this->stripe_customer->cards->all();
+		$cards = $this->stripe_customer->sources->all();
 		
 		$cards_array = array();
 		foreach ($cards->data as $card) {

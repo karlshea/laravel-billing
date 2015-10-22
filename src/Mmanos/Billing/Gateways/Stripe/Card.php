@@ -80,7 +80,7 @@ class Card implements CardInterface
 		}
 		
 		if (!$this->stripe_card) {
-			$this->stripe_card = $this->stripe_customer->cards->retrieve($this->id);
+			$this->stripe_card = $this->stripe_customer->sources->retrieve($this->id);
 		}
 		
 		if (!$this->stripe_card) {
@@ -112,7 +112,7 @@ class Card implements CardInterface
 	 */
 	public function create($card_token)
 	{
-		$stripe_card = $this->stripe_customer->cards->create(array(
+		$stripe_card = $this->stripe_customer->sources->create(array(
 			'card' => $card_token,
 		));
 		
